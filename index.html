@@ -31,6 +31,26 @@
     <footer>
         <p>&copy; 2022 Your Company or Name</p>
     </footer>
+	<div id="dataContainer">
+	    <!-- Data will be displayed here -->
+	</div>
+	
+	<script>
+	// Function to fetch data from a server
+	function fetchData() {
+	    // Make a request to your server or any API to retrieve data
+	    fetch('your_data_url_here')
+	        .then(response => response.json())
+	        .then(data => {
+	            // Once data is retrieved, update the HTML content
+	            document.getElementById('dataContainer').innerHTML = JSON.stringify(data);
+	        })
+	        .catch(error => console.error('Error fetching data:', error));
+	}
+	
+	// Call the function to fetch data when the page loads
+	window.onload = fetchData;
+	</script>
 
 </body>
 </html>
