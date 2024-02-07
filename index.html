@@ -36,20 +36,26 @@
 	</div>
 	
 	<script>
-	// Function to fetch data from a server
-	function fetchData() {
-	    // Make a request to your server or any API to retrieve data
-	    fetch('https://mcberta2.github.io/test/')
-	        .then(response => response.json())
-	        .then(data => {
-	            // Once data is retrieved, update the HTML content
-	            document.getElementById('dataContainer').innerHTML = JSON.stringify(data);
-	        })
-	        .catch(error => console.error('Error fetching data:', error));
-	}
+	// Create a WebSocket instance
+	const socket = new WebSocket('ws://your_websocket_server_url_here');
 	
-	// Call the function to fetch data when the page loads
-	window.onload = fetchData;
+	// Handle messages received from the server
+	socket.onmessage = function(event) {
+	    const newData = JSON.parse(event.data);
+	    // Update the HTML content with the new data
+	    document.getElementById('dataContainer').innerHTML = JSON.stringify(newData);
+	};
+	
+	// Handle errors
+	socket.onerror = function(error) {
+	    console.error('WebSocket error:', error);
+	};
+	
+	// Handle the WebSocket connection being closed
+	socket.onclose = function(event) {
+	    console.log('WebSocket connection closed:', event);
+	};
+	
 	</script>
 
 </body>
