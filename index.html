@@ -31,32 +31,6 @@
     <footer>
         <p>&copy; 2022 Your Company or Name</p>
     </footer>
-	<div id="dataContainer">
-	    <!-- Data will be displayed here -->
-	</div>
-	
-	<script>
-	// Create a WebSocket instance
-	const socket = new WebSocket('wss://mcberta2.github.io/test/:443');
-	
-	// Handle messages received from the server
-	socket.onmessage = function(event) {
-	    const newData = JSON.parse(event.data);
-	    // Update the HTML content with the new data
-	    document.getElementById('dataContainer').innerHTML = JSON.stringify(newData);
-	};
-	
-	// Handle errors
-	socket.onerror = function(error) {
-	    console.error('WebSocket error:', error);
-	};
-	
-	// Handle the WebSocket connection being closed
-	socket.onclose = function(event) {
-	    console.log('WebSocket connection closed:', event);
-	};
-	
-	</script>
 
 </body>
 </html>
